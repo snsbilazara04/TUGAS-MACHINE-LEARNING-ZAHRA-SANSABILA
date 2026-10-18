@@ -269,4 +269,41 @@ Menyimpan model Gradient Boosting Regressor dan scaler, kemudian menghasilkan pr
 
 <img width="650" height="413" alt="image" src="https://github.com/user-attachments/assets/e1dd8622-4a44-4044-a65c-66a9ceb98fe9" />
 
+# Deployment dan Monitoring Model Machine Learning
+
+File tambahan:
+- `app.py`: aplikasi web Streamlit untuk memasukkan data dan melihat hasil prediksi Performance Index.
+- `monitoring.py`: ringkasan log monitoring melalui terminal.
+- `requirements_deployment.txt`: pustaka yang diperlukan untuk menjalankan aplikasi.
+- `monitoring_log.csv`: dibuat otomatis setelah prediksi pertama.
+
+## Cara menjalankan di Windows
+
+1. Ekstrak folder proyek dan buka terminal/CMD di folder `PRAKTIKUM_LAB_ML`.
+2. Pastikan `gbr_model.joblib` dan `scaler.joblib` berada di folder yang sama dengan `app.py`.
+3. Instal pustaka:
+
+   ```bash
+   python -m pip install -r requirements_deployment.txt
+   ```
+
+4. Jalankan aplikasi:
+
+   ```bash
+   python -m streamlit run app.py
+   ```
+
+5. Browser akan terbuka. Isi fitur mahasiswa lalu klik **Prediksi Performance Index**. Setiap permintaan dicatat ke `monitoring_log.csv`.
+6. Buka tab **Monitoring** untuk melihat total prediksi, jumlah berhasil/gagal, rata-rata waktu proses, grafik hasil prediksi, dan mengunduh log.
+7. Untuk laporan dari terminal, jalankan:
+
+   ```bash
+   python monitoring.py
+   ```
+
+## Catatan
+
+- Aplikasi menggunakan encoding kategori `No = 0` dan `Yes = 1`, sesuai encoding yang diharapkan oleh artefak model pada proyek ini.
+- Ini adalah deployment lokal untuk demonstrasi/praktikum. Untuk hosting publik, gunakan server yang sesuai dan tambahkan autentikasi serta perlindungan data.
+- Monitoring saat ini mencatat kesehatan operasional (jumlah permintaan, error, latensi, dan output). Akurasi aktual serta data drift belum dapat dihitung tanpa label aktual/data pembanding yang datang kemudian.
 
